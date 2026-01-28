@@ -2,13 +2,17 @@ import csv
 import time
 import serial
 
-PORT = "COM5"
-BAUD = 921600
+PORT = "COM6"
+BAUD = 115200
 OUTFILE = "allan_log.csv"
 DURATION_S = 7 * 3600
 
+bad = 0
+last_debug = time.time()
+
 def main():
     ser = serial.Serial(PORT, BAUD, timeout=1)
+    raw = ser.readline().decode(errors="replace").strip()
     #clear junk
     ser.reset_input_buffer()
 
@@ -29,16 +33,19 @@ def main():
                 break
 
             parts = line.split(",")
-            if len(parts) != 13:
+            if len(parts) != 14:
+                print(f"Bad line: {line}")
                 continue
             
             #print header
             if parts[0] == "index":
+                print("Writing header")
                 w.writerow(parts)
                 f.flush()
                 continue
 
             w.writerow(parts)
+            print(f"Logged row: {parts[0]}")
             rows += 1
 
             now = time.time()
