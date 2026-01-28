@@ -29,7 +29,7 @@ def main():
                 break
 
             parts = line.split(",")
-            if len(parts) != 8:
+            if len(parts) != 13:
                 continue
             
             #print header

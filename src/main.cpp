@@ -6,14 +6,17 @@ static constexpr uint32_t TOTAL_TIME = 7UL * 3600UL;
 static constexpr uint32_t TOTAL_SAMPLES = HZ * TOTAL_TIME;
 
 struct Sample {
-    int32_t ax, ay, az;
-    int32_t gx, gy, gz;
+    int32_t icm_ax, icm_ay, icm_az;
+    int32_t icm_gx, icm_gy, icm_gz;
+
+    int32_t asm_ax, asm_ay, asm_az;
+    int32_t asm_gx, asm_gy, asm_gz;
 };
 
 bool readSensorData(Sample &s) {
     //idk how to read sensor data lol
 
-    s = {0, 0, 0, 0, 0, 0};
+    s = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     return true;
 }
 
@@ -64,12 +67,18 @@ void loop(){
     if(success){
         Serial.print(index); Serial.print(',');
         Serial.print(t_us); Serial.print(',');
-        Serial.print(s.ax); Serial.print(',');
-        Serial.print(s.ay); Serial.print(',');
-        Serial.print(s.az); Serial.print(',');
-        Serial.print(s.gx); Serial.print(',');
-        Serial.print(s.gy); Serial.print(',');
-        Serial.println(s.gz);
+        Serial.print(s.icm_ax); Serial.print(',');
+        Serial.print(s.icm_ay); Serial.print(',');
+        Serial.print(s.icm_az); Serial.print(',');
+        Serial.print(s.icm_gx); Serial.print(',');
+        Serial.print(s.icm_gy); Serial.print(',');
+        Serial.print(s.icm_gz); Serial.print(',');
+        Serial.print(s.asm_ax); Serial.print(',');
+        Serial.print(s.asm_ay); Serial.print(',');
+        Serial.print(s.asm_az); Serial.print(',');
+        Serial.print(s.asm_gx); Serial.print(',');
+        Serial.print(s.asm_gy); Serial.print(',');
+        Serial.println(s.asm_gz);
     }
     else {
         Serial.print(index); Serial.print(',');
