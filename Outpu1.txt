@@ -1,0 +1,102 @@
+icm_ax Data initialized
+icm_ax OADEV Calculated
+icm_ax Bias instability found
+icm_ax White region: tau=0.162s, slope=-0.50, N=4.948525e-03
+icm_ax RW region:    tau=4.29e+03s, slope=0.50, K=3.548761e-04
+icm_ay Data initialized
+icm_ay OADEV Calculated
+icm_ay Bias instability found
+icm_ay White region: tau=0.212s, slope=-0.50, N=4.825352e-03
+icm_ay RW region:    tau=1.61e+03s, slope=0.50, K=1.610984e-04
+icm_az Data initialized
+icm_az OADEV Calculated
+icm_az Bias instability found
+icm_az White region: tau=7.14e+03s, slope=-0.50, N=9.818060e-02
+icm_az RW region:    tau=1.21e+04s, slope=0.50, K=5.802115e-06
+asm_ax Data initialized
+asm_ax OADEV Calculated
+asm_ax Bias instability found
+asm_ax White region: tau=1.26e+04s, slope=-0.50, N=1.032008e+02
+asm_ax RW region:    tau=66.6s, slope=0.50, K=1.474176e-02
+asm_ay Data initialized
+asm_ay OADEV Calculated
+asm_ay Bias instability found
+asm_ay White region: tau=0.962s, slope=-0.50, N=1.732320e-01
+asm_ay RW region:    tau=5.44e+03s, slope=0.50, K=3.503381e-02
+asm_az Data initialized
+asm_az OADEV Calculated
+asm_az Bias instability found
+asm_az White region: tau=5.24s, slope=-0.50, N=2.295548e-01
+asm_az RW region:    tau=1.68e+03s, slope=0.50, K=4.195624e-03
+icm_gx Data initialized
+icm_gx OADEV Calculated
+icm_gx Bias instability found
+icm_gx White region: tau=591s, slope=-0.50, N=1.897158e-03
+icm_gx RW region:    tau=999s, slope=0.50, K=4.302301e-06
+icm_gy Data initialized
+icm_gy OADEV Calculated
+icm_gy Bias instability found
+icm_gy White region: tau=3.64e+03s, slope=-0.50, N=9.380305e-03
+icm_gy RW region:    tau=7.41e+03s, slope=0.50, K=2.113769e-06
+icm_gz Data initialized
+icm_gz OADEV Calculated
+icm_gz Bias instability found
+icm_gz White region: tau=1.36s, slope=-0.50, N=6.283017e-04
+icm_gz RW region:    tau=1.16e+04s, slope=0.50, K=3.729344e-06
+asm_gx Data initialized
+asm_gx OADEV Calculated
+asm_gx Bias instability found
+asm_gx White region: tau=5.26s, slope=-0.50, N=1.400553e+01
+asm_gx RW region:    tau=1.08e+04s, slope=0.50, K=1.152665e-01
+asm_gy Data initialized
+asm_gy OADEV Calculated
+asm_gy Bias instability found
+asm_gy White region: tau=1.26e+04s, slope=-0.50, N=1.124893e+03
+asm_gy RW region:    tau=1.03e+04s, slope=0.50, K=1.621635e-01
+asm_gz Data initialized
+asm_gz OADEV Calculated
+asm_gz Bias instability found
+asm_gz White region: tau=5.76s, slope=-0.50, N=6.534220e+00
+asm_gz RW region:    tau=1.76e+03s, slope=0.50, K=9.894897e-02
+
+Calculated Bias Instability (min Allan deviation):
+icm_ax: 1.286226e-03
+icm_ay: 1.255403e-03
+icm_az: 3.684322e-04
+asm_ax: 5.348423e-02
+asm_ay: 7.355361e-02
+asm_az: 4.100669e-02
+icm_gx: 7.265395e-05
+icm_gy: 9.035901e-05
+icm_gz: 5.400082e-05
+asm_gx: 1.106486e+00
+asm_gy: 9.679830e-01
+asm_gz: 7.601221e-01
+
+Estimated White Noise Coefficient (N ≈ σ(τ)*sqrt(τ)):
+icm_ax: 4.948525e-03
+icm_ay: 4.825352e-03
+icm_az: 9.818060e-02
+asm_ax: 1.032008e+02
+asm_ay: 1.732320e-01
+asm_az: 2.295548e-01
+icm_gx: 1.897158e-03
+icm_gy: 9.380305e-03
+icm_gz: 6.283017e-04
+asm_gx: 1.400553e+01
+asm_gy: 1.124893e+03
+asm_gz: 6.534220e+00
+
+Estimated Random Walk Coefficient (K ≈ σ(τ)*sqrt(3/τ)):
+icm_ax: 3.548761e-04
+icm_ay: 1.610984e-04
+icm_az: 5.802115e-06
+asm_ax: 1.474176e-02
+asm_ay: 3.503381e-02
+asm_az: 4.195624e-03
+icm_gx: 4.302301e-06
+icm_gy: 2.113769e-06
+icm_gz: 3.729344e-06
+asm_gx: 1.152665e-01
+asm_gy: 1.621635e-01
+asm_gz: 9.894897e-02

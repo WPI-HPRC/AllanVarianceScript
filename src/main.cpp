@@ -113,7 +113,7 @@ void setup() {
   icm.setGyroRange(ICM20948_GYRO_RANGE_2000_DPS);
   icm.setMagDataRate(AK09916_MAG_DATARATE_100_HZ);
 
-  // ---- Configure ICM20948 (REQUIRED) ----
+  //Configure ICM
   icm.setAccelRange(ICM20948_ACCEL_RANGE_4_G);
   icm.setGyroRange(ICM20948_GYRO_RANGE_500_DPS);
 
