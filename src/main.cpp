@@ -11,14 +11,20 @@
 static constexpr uint8_t SDA_PIN = PB7;
 static constexpr uint8_t SCL_PIN = PB6;
 
+/*
 //ICM20948 libs
+
 #include <Adafruit_ICM20948.h>
 #include <Adafruit_Sensor.h>
-
 Adafruit_ICM20948 icm;
 
 //ICM ic2 address
 static constexpr uint8_t ICM_ADDR = 0x68;
+
+*/
+
+#include <Arduino_LSM6DS3.h>
+
 
 //ASM libs
 #include <ASM330LHHSensor.h>
