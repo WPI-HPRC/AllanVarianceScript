@@ -36,6 +36,9 @@ static constexpr uint8_t PIN_LSM_CS = PB4 ;
 
 #include <Arduino_LSM6DS3.h>
 
+#include "../boilerplate/Sensors/Impl/ICM20948.h"
+#include "../boilerplate/Sensors/Impl/LSM6.h"
+#include "../boilerplate/TimedPointer/TimedPointer.h"
 
 //ASM libs
 #include <ASM330LHHSensor.h>
@@ -51,15 +54,18 @@ static constexpr uint32_t TOTAL_SAMPLES = HZ * TOTAL_TIME;
 struct Sample {
   float lsm_ax, lsm_ay, lsm_az;
   float lsm_gx, lsm_gy, lsm_gz;
-  int32_t asm_ax, asm_ay, asm_az;
-  int32_t asm_gx, asm_gy, asm_gz;
+  float asm_ax, asm_ay, asm_az;
+  float mag_x, mag_y, mag_z;
+  float baro
 };
 
 static inline void zeroSample(Sample &s) {
-  s.lsm_ax = s.lsm_ay = s.lsm_az = 0;
-  s.lsm_gx = s.lsm_gy = s.lsm_gz = 0;
-  s.asm_ax = s.asm_ay = s.asm_az = 0;
-  s.asm_gx = s.asm_gy = s.asm_gz = 0;
+  s.lsm_ax = s.lsm_ay = s.lsm_az = 0.0f;
+  s.lsm_gx = s.lsm_gy = s.lsm_gz = 0.0f;
+  s.asm_ax = s.asm_ay = s.asm_az = 0.0f;
+  s.asm_gx = s.asm_gy = s.asm_gz = 0.0f;
+  s.mag_x = s.mag_y = s.mag_z = 0.0f;
+  s.baro = 0.0f;
 }
 
 //Read sensor data
@@ -82,18 +88,18 @@ static bool readSensorData(Sample &s) {
   */
 
   //gram asm data
-  int32_t acc[3] = {0,0,0};
-  int32_t gyr[3] = {0,0,0};
+  int32_t asm_acc[3] = {0,0,0};
+  int32_t asm_gyr[3] = {0,0,0};
 
-  asmimu.Get_X_Axes(acc);
-  asmimu.Get_G_Axes(gyr);
+  asmimu.Get_X_Axes(asm_acc);
+  asmimu.Get_G_Axes(asm_gyr);
 
-  s.asm_ax = acc[0];
-  s.asm_ay = acc[1];
-  s.asm_az = acc[2];
-  s.asm_gx = gyr[0];
-  s.asm_gy = gyr[1];
-  s.asm_gz = gyr[2];
+  s.asm_ax = asm_acc[0];
+  s.asm_ay = asm_acc[1];
+  s.asm_az = asm_acc[2];
+  s.asm_gx = asm_gyr[0];
+  s.asm_gy = asm_gyr[1];
+  s.asm_gz = asm_gyr[2];
 
   return true;
 }
