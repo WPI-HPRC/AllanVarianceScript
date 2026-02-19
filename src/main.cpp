@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include <SPI.h>
+
 
 #if defined(USBCON)
 #define DBG SerialUSB
@@ -7,6 +9,7 @@
 #define DBG Serial
 #endif
 
+/*
 //I2C pins
 static constexpr uint8_t SDA_PIN = PB7;
 static constexpr uint8_t SCL_PIN = PB6;
@@ -23,6 +26,14 @@ static constexpr uint8_t ICM_ADDR = 0x68;
 
 */
 
+//SPI pins
+static constexpr uint8_t PIN_SENS_SCK = PG11;
+static constexpr uint8_t PIN_SENS_MISO = PG9;
+static constexpr uint8_t PIN_SENS_MOSI = PD7;
+
+static constexpr uint8_t PIN_ASM_CS = PD5;
+static constexpr uint8_t PIN_LSM_CS = PB4 ;
+
 #include <Arduino_LSM6DS3.h>
 
 
@@ -38,15 +49,15 @@ static constexpr uint32_t TOTAL_SAMPLES = HZ * TOTAL_TIME;
 
 //Sample struct
 struct Sample {
-  float icm_ax, icm_ay, icm_az;
-  float icm_gx, icm_gy, icm_gz;
+  float lsm_ax, lsm_ay, lsm_az;
+  float lsm_gx, lsm_gy, lsm_gz;
   int32_t asm_ax, asm_ay, asm_az;
   int32_t asm_gx, asm_gy, asm_gz;
 };
 
 static inline void zeroSample(Sample &s) {
-  s.icm_ax = s.icm_ay = s.icm_az = 0;
-  s.icm_gx = s.icm_gy = s.icm_gz = 0;
+  s.lsm_ax = s.lsm_ay = s.lsm_az = 0;
+  s.lsm_gx = s.lsm_gy = s.lsm_gz = 0;
   s.asm_ax = s.asm_ay = s.asm_az = 0;
   s.asm_gx = s.asm_gy = s.asm_gz = 0;
 }
@@ -56,6 +67,7 @@ static bool readSensorData(Sample &s) {
   zeroSample(s);
 
 
+  /*
   //grab icm data
   sensors_event_t accel, gyro, temp, mag;
   icm.getEvent(&accel, &gyro, &temp, &mag);
@@ -67,6 +79,7 @@ static bool readSensorData(Sample &s) {
   s.icm_gx = gyro.gyro.x;
   s.icm_gy = gyro.gyro.y;
   s.icm_gz = gyro.gyro.z;
+  */
 
   //gram asm data
   int32_t acc[3] = {0,0,0};
@@ -108,6 +121,7 @@ void setup() {
     asmimu.Enable_G();
   }
 
+  /*
   //ICM init
   if (!icm.begin_I2C(0x68, &Wire)) {
     DBG.println("ICM init failed");
@@ -125,6 +139,7 @@ void setup() {
 
   icm.setAccelRateDivisor(0);  
   icm.setGyroRateDivisor(0);    
+  */
 
   DBG.println("READY");
   DBG.println("index,t_us,icm_ax,icm_ay,icm_az,icm_gx,icm_gy,icm_gz,asm_ax,asm_ay,asm_az,asm_gx,asm_gy,asm_gz");
@@ -157,12 +172,12 @@ void loop() {
 
   DBG.print(index); DBG.print(',');
   DBG.print(t_us); DBG.print(',');
-  DBG.print(s.icm_ax); DBG.print(',');
-  DBG.print(s.icm_ay); DBG.print(',');
-  DBG.print(s.icm_az); DBG.print(',');
-  DBG.print(s.icm_gx); DBG.print(',');
-  DBG.print(s.icm_gy); DBG.print(',');
-  DBG.print(s.icm_gz); DBG.print(',');
+  DBG.print(s.lsm_ax); DBG.print(',');
+  DBG.print(s.lsm_ay); DBG.print(',');
+  DBG.print(s.lsm_az); DBG.print(',');
+  DBG.print(s.lsm_gx); DBG.print(',');
+  DBG.print(s.lsm_gy); DBG.print(',');
+  DBG.print(s.lsm_gz); DBG.print(',');
   DBG.print(s.asm_ax); DBG.print(',');
   DBG.print(s.asm_ay); DBG.print(',');
   DBG.print(s.asm_az); DBG.print(',');
