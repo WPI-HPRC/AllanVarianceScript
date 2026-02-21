@@ -33,7 +33,7 @@ def main():
                 break
 
             parts = line.split(",")
-            if len(parts) != 14:
+            if len(parts) != 24:
                 print(f"Bad line: {line}")
                 continue
             

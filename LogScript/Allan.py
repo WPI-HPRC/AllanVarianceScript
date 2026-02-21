@@ -11,7 +11,9 @@ df = pd.read_csv('allan_log.csv')
 
 accel_cols = ['icm_ax', 'icm_ay', 'icm_az', 'asm_ax', 'asm_ay', 'asm_az']
 gyro_cols  = ['icm_gx', 'icm_gy', 'icm_gz', 'asm_gx', 'asm_gy', 'asm_gz']
-
+mag_cols = ['icm_mx', 'icm_my', 'icm_mz']
+baro_cols = ['lsm_p','lsm_t']
+gps_cols = ['max10s.lat', 'max10s.lon', 'max10s.velN', 'max10s.velE', 'max10s.velD']
 # Store results for printing
 bias_instability = {}
 white_noise = {}
@@ -61,7 +63,7 @@ def extract_white_and_rw(tau, adev):
 plt.figure(figsize=(12, 8))
 
 # Iterate over all relevant columns
-for col in accel_cols + gyro_cols:
+for col in accel_cols + gyro_cols + mag_cols + baro_cols:
     # Limit to first 350k rows (as you had)
     data = df[col].values
     print(col + " Data initialized")
